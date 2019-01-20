@@ -1,0 +1,86 @@
+/* .page-title {
+    display:block;
+    text-align: center;
+    color: white;
+    font-family: serif;
+    font-size: 40pt;
+}
+.uzseal{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.helper{
+    display:block;
+    text-align: center;
+    color: white;
+    font-size: 32pt;
+}
+
+
+
+  .v-wrap{
+      height: 100%;
+      white-space: nowrap;
+      text-align: center;
+  }
+  .v-wrap:before{
+      content: "";
+      display: inline-block;
+      vertical-align: middle;
+      width: 0;
+      /* adjust for white space between pseudo element and next sibling */
+      /* margin-right: -.25em; */
+      /* stretch line height */
+      /* height: 100%; 
+  } */
+  /* .v-box{
+      display: inline-block;
+      vertical-align: middle;
+      white-space: normal;
+      
+  }
+
+  .profile{
+      margin-top:30px;
+  }
+
+
+  #profile{
+    margin-top:10%;
+    margin-bottom: 5px;
+    height: 100%;
+    white-space: nowrap;
+
+  }  */
+
+/* html, body {
+    min-height: 100%;
+} */
+.v-wrap {
+    background-image: url("bg.jpg");
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0; 
+    left: 0;
+}
+
+.v-wrap2 {
+    background-image: url("bg1.jpg");
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0; 
+    left: 0;
+}
+
+@media (min-width: 1120px), (min-height: 630px) {
+    body { background-size: auto; }
+}

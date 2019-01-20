@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet" media="all"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="print.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="cover" class='v-wrap' style="display: block;"></div>
+    <div id='req-err' class="alert alert-danger alert-dismissible fade show" style="display: none;text-align: center">
+        <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
+        <strong>Notice!</strong> Sorry, You can only make a request ones every month.
+    </div>
+    <div id="cover1" class='v-wrap2' style="display: none;"></div>
+
+<div  id="center_container" class="card align-items-center mt-3 mx-auto" style="width:600px;display: none">
+        <div style="width:100%;text-align:center">
+                <img src="users.png" class="rounded-circle card-img-top" alt="Cinque Terre" style="width:200px;text-align:center">
+        </div> 
+        <div class="card-body" style="width:600px">
+                <ul class="list-group">
+                        <li id="firstname" class="list-group-item active"> </li>
+                        <li id="course" class="list-group-item"></li>
+                        <li id="studentid" class="list-group-item"></li>
+                      </ul>
+                <!-- <button type="button" class="btn btn-secondary" onclick="PrintElem('firstname')">Print </button> -->
+        </div>    
+</div>
+
+    <script>
+ 
+        var socket = io.connect('localhost:3000');
+        socket.on('data', (data)=> {
+            console.log(data);
+           document.getElementById('cover').style.display= "none";
+           document.getElementById('req-err').style.display= "none";
+           document.getElementById('center_container').style.display= "block";
+           document.getElementById('cover1').style.display= "block";
+           document.getElementById('firstname').innerHTML = `Name: ${data.firstname} ${data.lastname}` ;
+           document.getElementById('course').innerHTML = `Course:${data.course}` ;
+           document.getElementById('studentid').innerHTML = `StudenNumber:${data.studentid}`;
+           PrintElem('firstname',data.year,data.misc,data.tuition,data.downpayment,data.others,data.total,data.premid,data.mid,data.prefinal,data.final);
+           setTimeout(()=>{
+            document.getElementById('cover').style.display= "block";
+            document.getElementById('center_container').style.display= "none";
+            document.getElementById('cover1').style.display= "none";
+            
+           },3000);
+           console.log(data);
+            
+        }
+
+
+        );
+
+        socket.on('error',()=>{
+            document.getElementById('req-err').style.display= "block";
+            setTimeout(()=>{
+                document.getElementById('req-err').style.display= "none";
+            },3000);
+        })
+    
+    </script>
+    <!-- <script language="javascript" src="jquery.js"></script> -->
+    <script src="jquery.slim.min.js"></script>
+    <script src="umd/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+  
+    
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> -->
+</body>
+</html>
